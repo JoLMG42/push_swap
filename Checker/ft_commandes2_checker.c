@@ -6,7 +6,7 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:45:06 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/01/12 17:42:16 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:30:20 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_rrb_checker(t_stack *global)
 	int	i;
 	int	tmp;
 
+	if (!global->len_b)
+		return ;
 	i = global->len_b - 2;
 	tmp = global->tab_b[global->len_b - 1];
 	while (i >= 0)
@@ -47,6 +49,8 @@ void	ft_rrr_checker(t_stack *global)
 	int	i;
 	int	tmp;
 
+	if (!global->len_b)
+		return ;
 	i = global->len_a - 2;
 	tmp = global->tab[global->len_a - 1];
 	while (i >= 0)

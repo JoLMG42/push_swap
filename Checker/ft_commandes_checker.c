@@ -6,7 +6,7 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:19:38 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/01/12 17:42:34 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:20:18 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_pa_checker(t_stack *global)
 	int	i;
 
 	i = global->len_a - 1;
+	if (!global->len_b)
+		return ;
 	while (i >= 0)
 	{
 		global->tab[i + 1] = global->tab[i];
@@ -75,6 +77,8 @@ void	ft_rb_checker(t_stack *global)
 	int	tmp;
 
 	i = 0;
+	if (!global->len_b)
+		return ;
 	tmp = global->tab_b[0];
 	while (i < global->len_b - 1)
 	{
@@ -97,6 +101,8 @@ void	ft_rr_checker(t_stack *global)
 		i++;
 	}
 	global->tab[global->len_a - 1] = tmp;
+	if (!global->len_b)
+		return ;
 	i = 0;
 	tmp = global->tab_b[0];
 	while (i < global->len_b - 1)

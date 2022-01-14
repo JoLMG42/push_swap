@@ -6,7 +6,7 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:59:12 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/01/13 15:03:29 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:15:28 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,10 @@ void	ft_check_how_many(char **strs, int *tab, t_stack *global)
 	ft_insertion(i, global);
 }
 
-void	ft_free(t_stack *global, char **strs)
+void	ft_free2(char **strs)
 {
 	int	i;
 
-	free(global->tab);
-	if (global->tab_b)
-		free(global->tab_b);
-	free(global);
 	i = 0;
 	while (strs[i])
 	{
@@ -54,6 +50,14 @@ void	ft_free(t_stack *global, char **strs)
 		i++;
 	}
 	free(strs);
+}
+
+void	ft_free(t_stack *global)
+{
+	free(global->tab);
+	if (global->tab_b)
+		free(global->tab_b);
+	free(global);
 }
 
 int	main(int ac, char **av)
@@ -71,13 +75,15 @@ int	main(int ac, char **av)
 	global->tab = ft_str_to_int(strs, ac, global);
 	if (!ft_check_all(ac, strs, global))
 	{
-		ft_free(global, strs);
+		ft_free(global);
+		ft_free2(strs);
 		write(1, "Error\n", 6);
 		return (0);
 	}
 	global->tab_b = malloc(sizeof(int) * (global->len_a));
 	global->len_b = 0;
 	ft_check_how_many(strs, global->tab, global);
-	ft_free(global, strs);
+	ft_free2(strs);
+	ft_free(global);
 	return (0);
 }

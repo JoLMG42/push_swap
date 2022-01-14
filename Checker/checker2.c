@@ -6,7 +6,7 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 17:19:18 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/01/13 15:16:59 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:28:41 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_check_p(t_stack *global)
 		ft_pb_checker(global);
 	else
 	{
+		ft_free(global);
 		write(1, "Error\n", 6);
 		exit(0);
 	}
@@ -49,6 +50,7 @@ void	ft_check_r(t_stack *global)
 		ft_rrr_checker(global);
 	else
 	{
+		ft_free(global);
 		write(1, "Error\n", 6);
 		exit(0);
 	}
@@ -66,6 +68,7 @@ void	ft_check_s(t_stack *global)
 		ft_sb_checker(global);
 	else
 	{
+		ft_free(global);
 		write(1, "Error\n", 6);
 		exit(0);
 	}
@@ -87,14 +90,13 @@ void	ft_read(t_stack *global)
 			ft_check_p(global);
 		else if (str[0] == 's')
 			ft_check_s(global);
-		else if (str[0] != '\n')
-		{
-			if (str[0] == ' ')
-			{
-				write(1, "Error\n", 6);
-				exit(0);
-			}
+		else if (str[0] == '\0')
 			return ;
+		else if (str[0] != 'r' || str[0] != 'p' || str[0] != 's')
+		{
+			ft_free(global);
+			write(1, "Error\n", 6);
+			exit(0);
 		}
 	}
 }

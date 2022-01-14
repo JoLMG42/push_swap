@@ -6,7 +6,7 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 16:47:26 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/01/12 18:41:52 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:16:31 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int				ft_check_double(int ac, char **str);
 int				ft_check_all(int ac, char **str, t_stack *global);
 int				*ft_str_to_int(char **str, int ac, t_stack *global);
 int				ft_check_max(int ac, char **str);
+void			ft_free(t_stack *global);
+void			ft_free2(char **strs);
 /* -- Classic -- */
 
 int				ft_strlen(char *str);
@@ -86,7 +88,7 @@ void			ft_check_p(t_stack *global);
 void			ft_check_r(t_stack *global);
 void			ft_check_s(t_stack *global);
 void			ft_read(t_stack *global);
-void			ft_check_sorted(int *tab, int size);
+void			ft_check_sorted(t_stack *global, int *tab, int size);
 void			ft_rra_checker(t_stack *global);
 void			ft_rrb_checker(t_stack *global);
 void			ft_rrr_checker(t_stack *global);

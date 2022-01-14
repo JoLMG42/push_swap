@@ -6,20 +6,16 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:59:12 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/01/13 15:03:20 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:19:49 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_free(t_stack *global, char **strs)
+void	ft_free2(char **strs)
 {
 	int	i;
 
-	free(global->tab);
-	if (global->tab_b)
-		free(global->tab_b);
-	free(global);
 	i = 0;
 	while (strs[i])
 	{
@@ -29,11 +25,23 @@ void	ft_free(t_stack *global, char **strs)
 	free(strs);
 }
 
-void	ft_check_sorted(int *tab, int size)
+void	ft_free(t_stack *global)
+{
+	free(global->tab);
+	free(global->tab_b);
+	free(global);
+}
+
+void	ft_check_sorted(t_stack *global, int *tab, int size)
 {
 	int	i;
 	int	j;
 
+	if (global->len_b)
+	{
+		write(1, "KO\n", 3);
+		return ;
+	}
 	i = 0;
 	while (i < size)
 	{
@@ -66,15 +74,17 @@ int	main(int ac, char **av)
 	strs = ft_split(ft_strsjoin(av, ac), ' ');
 	if (!ft_check_all(ac, strs, global))
 	{
-		ft_free(global, strs);
+		free(global);
+		ft_free2(strs);
 		write(1, "Error\n", 6);
 		return (0);
 	}
 	global->tab = ft_str_to_int(strs, ac, global);
+	ft_free2(strs);
 	global->tab_b = malloc(sizeof(int) * (global->len_a));
 	global->len_b = 0;
 	ft_read(global);
-	ft_check_sorted(global->tab, global->len_a);
-	ft_free(global, strs);
+	ft_check_sorted(global, global->tab, global->len_a);
+	ft_free(global);
 	return (0);
 }
