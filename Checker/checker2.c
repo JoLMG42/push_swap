@@ -6,7 +6,7 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 17:19:18 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/01/14 17:28:41 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:04:47 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_read(t_stack *global)
 			ft_check_s(global);
 		else if (str[0] == '\0')
 			return ;
-		else if (str[0] != 'r' || str[0] != 'p' || str[0] != 's')
+		else if (str[0] != '\n')
 		{
 			ft_free(global);
 			write(1, "Error\n", 6);
